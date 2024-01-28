@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Book6.ReadModel.Waitlist>
+
+@{
+    ViewBag.Title = "Waitlist List";
+}
+
+<section>
+    <h4>Wait List</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>Book</th>
+            <th>User</th>
+            <th>Remove</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @ViewBag.bookWaitlist[item.BookId]
+                </td>
+                <td>
+                    @ViewBag.userReservation[item.UserId]
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info">
+                        @Html.ActionLink("Remove", "Remove", new { id = item.Id })
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>

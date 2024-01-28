@@ -1,0 +1,49 @@
+﻿@using Book6.Domain
+@model IEnumerable<Book6.ReadModel.User>
+
+@{
+    ViewBag.Title = "User List";
+}
+
+<section>
+
+    <div>
+        <h4>User List</h4>
+        <hr />
+        <button type="button" class="btn btn-danger">
+            @Html.ActionLink("Create a New User", "Create", "User")
+        </button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Book6.ReadModel.User w in Model)
+                {
+                    <tr>
+                        <td>
+                            <span>@w.Name</span>
+
+                        </td>
+                        <td>
+                            <div class="btn btn-warning">@Html.ActionLink("Edit", "Update", new { id = w.Id })</div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger">
+                                @Html.ActionLink("Delete", "Delete", new { Id = w.Id })
+                            </button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index", "User")
+    </p>
+</section>

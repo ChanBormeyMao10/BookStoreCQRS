@@ -1,0 +1,98 @@
+﻿@model List<Book6.ReadModel.Book>
+@using Raven.Client;
+
+@{
+    ViewBag.Title = "Book List Page";
+}
+
+
+<section>
+    <h4>Book List</h4>
+    <hr />
+    <button type="button" class="btn btn-danger">
+        @Html.ActionLink("Create a New Book", "Create")
+    </button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>
+                        <span>@w.Title</span>
+
+                    </td>
+                    <td>
+                        <div class="btn btn-warning">@Html.ActionLink("Edit", "Update", new { id = w.Id })</div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Delete", "Delete", new { Id = w.Id })
+                        </button>
+                    </td>
+                    <td>
+
+                        <select>
+                            @foreach (var war in ViewBag.Users)
+                            {
+                                <option value="@war.Name">@war.Name</option>
+
+                                ViewBag.UserId = war.Id;
+                            }
+                        </select>
+                        @if (w.IsReserved == true)
+                        {
+                            <a class="text-secondary text-dark" style="text-decoration: none;">
+                                Unavailable
+                            </a>
+                            if (w.IsInWaitlist == false)
+                            {
+                                <span> | </span>
+                                <button type="button" class="btn btn-info">
+                                    @Html.ActionLink(linkText: "Waitlist", actionName: "Create", controllerName: "Waitlist", routeValues: new
+                               {
+                                   BookId = w.Id,
+                                   UserId = ViewBag.UserId
+                               }, htmlAttributes: null)
+                                </button>
+                            }
+
+
+                        }
+                        @*Else: Allow Reserve*@
+                        else
+                        {
+                            <select>
+                                @foreach (var war in ViewBag.Employees)
+                                {
+                                    <option value="@war.Name">@war.Name</option>
+
+                                    ViewBag.EmployeeId = war.Id;
+                                }
+                            </select>
+                            <button type="button" class="btn btn-info">
+                                @*@Html.ActionLink("Borrow", "Borrow", "Reservation", new { Id = w.Id })*@
+                                @Html.ActionLink(linkText: "Borrow", actionName: "Create", controllerName: "Reservation", routeValues: new
+                           {
+                               BookId = w.Id,
+                               UserId = ViewBag.UserId,
+                               EmployeeId = ViewBag.EmployeeId
+                           }, htmlAttributes: null)
+                            </button>
+
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</section>

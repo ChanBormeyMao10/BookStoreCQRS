@@ -1,0 +1,19 @@
+﻿@model Book6.NewBook
+
+@{
+    ViewBag.Title = "Create Book";
+}
+
+<fieldset>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <label>Book Title</label>
+                @Html.TextBoxFor(m => m.Title)
+                <button type="submit" class="btn">Submit</button>
+            </fieldset>
+        }
+    </div>
+</fieldset>
+

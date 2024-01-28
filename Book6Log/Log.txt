@@ -1,0 +1,2 @@
+2023-04-27 14:10:24.9223 - FATAL: Command Failed : NewBook
+EXCEPTION:CRG.ES.ClientAPI.PermenantFailException ZMQ Send Request failed after 3 attempts Void .ctor(System.String, System.Collections.Generic.IEnumerable`1[System.Byte], System.Action`1[System.Collections.Generic.IEnumerable`1[System.Byte]])

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Book6.ReadModel.Reservation>
+
+@{
+    ViewBag.Title = "Reservation List";
+}
+
+<section>
+    <h4>Reservation List</h4>
+    <hr />
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    <table class="table">
+        <tr>
+            <th>Book</th>
+            <th>User</th>
+            <th>Return</th>
+            <th>Employee</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @ViewBag.bookReservation[item.BookId]
+                </td>
+                <td>
+                    @ViewBag.userReservation[item.UserId]
+                </td>
+                <td>
+                    @ViewBag.EmployeeReservation[item.EmployeeId]
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info">
+                        @Html.ActionLink("Return", "Return", new { id = item.Id })
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>

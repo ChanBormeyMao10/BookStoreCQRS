@@ -1,0 +1,23 @@
+﻿@model Book6.UpdateBook
+
+@{
+    ViewBag.Title = "Update a Book";
+}
+
+<h2>Update Book</h2>
+<fieldset>
+    @using (Html.BeginForm())
+    {
+
+        <div>
+            <label>Book Title</label>
+            @Html.TextBoxFor(u => u.Title)
+        </div>
+        <div>
+            @Html.HiddenFor(u => u.Id)
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+
+    }
+</fieldset>
